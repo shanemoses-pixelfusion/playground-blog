@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddTopicsCollection extends Migration
@@ -12,7 +13,7 @@ class AddTopicsCollection extends Migration
      */
     public function up()
     {
-        Schema::create('topics', function ($collection) {
+        Schema::create('topics', function (Blueprint $collection) {
             $collection->increments('id');
             $collection->string('name', 20);
             $collection->string('slug', 20);
@@ -28,6 +29,6 @@ class AddTopicsCollection extends Migration
      */
     public function down()
     {
-        Schema::drop('topics');
+        Schema::dropIfExists('topics');
     }
 }

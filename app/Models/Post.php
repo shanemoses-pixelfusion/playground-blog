@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -26,5 +27,15 @@ class Post extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Topics related to post
+     *
+     * @return BelongsToMany
+     */
+    public function topics() : BelongsToMany
+    {
+        return $this->belongsToMany(Topic::class)->withTimestamps();
     }
 }

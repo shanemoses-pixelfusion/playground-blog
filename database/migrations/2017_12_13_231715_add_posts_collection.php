@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddPostsCollection extends Migration
@@ -12,7 +13,7 @@ class AddPostsCollection extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function ($collection) {
+        Schema::create('posts', function (Blueprint $collection) {
             $collection->increments('id');
             $collection->string('title');
             $collection->string('slug', 60);
@@ -32,6 +33,6 @@ class AddPostsCollection extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::dropIfExists('posts');
     }
 }
