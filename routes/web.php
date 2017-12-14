@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Web\PostController@index');
+Route::get('/post/{post}', 'Web\PostController@show')->name('post');
+
+Auth::routes();
+
+// TODO: Admin routes for post add/edit forms
