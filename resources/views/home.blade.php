@@ -28,13 +28,13 @@
                                         <h3>{{ $post->title }}</h3>
                                     </header>
 
-                                    <div class="w3-container w3-center post-body" style="min-height: 200px; padding-top: 10px">
-                                        <p>{{ $post->body }}</p>
+                                    <div class="w3-container post-body">
+                                        <p>{{ str_limit($post->body, 25) }}</p>
                                     </div>
 
                                     <footer class="w3-container @if ($index % 2 === 0) w3-flat-orange @else w3-flat-green-sea @endif">
                                         <h5>author: {{ $post->user->name }}</h5>
-                                        <h5>created: {{ $post->created_at }}</h5>
+                                        <h5>created: {{ date_format($post->created_at, 'd F Y') }}</h5>
                                     </footer>
                                 </div>
                             </a>

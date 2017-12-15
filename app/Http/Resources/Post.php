@@ -21,8 +21,8 @@ class Post extends Resource
             'body'       => $this->body,
             'user'       => $this->user()->first(),
             'published'  => $this->published,
-            'updated_at' => (string) $this->update_at,
-            'created_at' => (string) $this->created_at
+            'updated_at' => (string)$this->update_at,
+            'created_at' => (string)$this->created_at
         ];
     }
 }

@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', 'Web\PostController@index');
+Route::get('/', 'Web\PostController@index')->name('home');
 Route::get('/post/{post}', 'Web\PostController@show')->name('post');
 
 Auth::routes();
 
-// TODO: Admin routes for post add/edit forms
+Route::prefix('admin')->namespace('Admin')->group(function () {
+    // Post
+    Route::get('/post/create', 'PostController@create')->name('admin.post.create');
+    Route::post('/post', 'PostController@store')->name('admin.post.store');
+    Route::get('/post/edit/{post}', 'PostController@edit')->name('admin.post.edit');
+
+    // TODO: Topic
+});

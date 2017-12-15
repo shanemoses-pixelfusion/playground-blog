@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::namespace('Api')->group(function() {
         Route::apiResource('posts', 'PostController');
-        Route::apiResource('topics', 'TopicsController');
+        // TODO: Implement Topics Controller
+//        Route::apiResource('topics', 'TopicsController');
     });
 });

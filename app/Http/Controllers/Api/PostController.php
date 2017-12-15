@@ -12,14 +12,24 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request $request
      * @return JsonResponse
      */
     public function store(Request $request) : JsonResponse
     {
-        // TODO: Check if Post already exists with slug
-            // TODO: If found, then return 400 and state it already exists. Please use unique Title
-            // TODO: else, create post and return 201
+        $attributes = $request->all();
+        $attributes['slug'] = str_slug($attributes['title']);
+        $attributes['published'] = isset($attributes['published']) ? (bool)$attributes['published'] : false;
+
+        // TODO: Check if the slug already exists in the DB, if it does, display error and return 400
+//        $existingPost = Post::where('slug', $attributes['slug'])->get();
+//
+//        if (empty($existingPost) === false) {
+//            return JsonResponse::create(['success' => false, 'message' => 'Post already exists'], 400);
+//        }
+
+        $post = new Post($attributes);
+        $post->save();
 
         return JsonResponse::create(['success' => true], 201);
     }
