@@ -24,7 +24,7 @@ class Post extends Model
      *
      * @return BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -34,8 +34,18 @@ class Post extends Model
      *
      * @return BelongsToMany
      */
-    public function topics() : BelongsToMany
+    public function topics(): BelongsToMany
     {
         return $this->belongsToMany(Topic::class)->withTimestamps();
+    }
+
+    /**
+     * Get the route key for the model
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }
